@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SubmissionStoryApp</string>
+    <string name="copyright">© 2023 Ilham Shodiq</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap untuk upgrade skill?</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Belum punya akun? Register</string>
+    <string name="name">Name</string>
+</resources>
