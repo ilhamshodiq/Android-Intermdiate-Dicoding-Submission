@@ -6,6 +6,11 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="register">Belum punya akun? Register</string>
+    <string name="register">New Here? Create a new account!</string>
     <string name="name">Name</string>
+    <string name="registertext">Register</string>
+    <string name="insert_your_name">Insert Your Name</string>
+    <string name="already_have_an_account_login">Already have an Account? Login!</string>
+    <string name="logout">logout</string>
+    <string name="story_app">Story App</string>
 </resources>
