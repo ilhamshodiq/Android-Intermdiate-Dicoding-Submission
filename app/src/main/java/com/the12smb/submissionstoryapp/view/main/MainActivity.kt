@@ -19,6 +19,7 @@ import com.the12smb.submissionstoryapp.data.local.model.UserPreference
 import com.the12smb.submissionstoryapp.data.remote.response.ListStoryItem
 import com.the12smb.submissionstoryapp.databinding.ActivityMainBinding
 import com.the12smb.submissionstoryapp.view.ViewModelFactory
+import com.the12smb.submissionstoryapp.view.add.AddStoryActivity
 import com.the12smb.submissionstoryapp.view.login.LoginActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -35,6 +36,14 @@ class MainActivity : AppCompatActivity() {
         setupViewModel()
         setToken()
         setupView()
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.floatingActionButton.setOnClickListener {
+            val intent = Intent(this, AddStoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupView() {

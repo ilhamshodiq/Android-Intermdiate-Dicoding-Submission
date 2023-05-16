@@ -13,4 +13,10 @@
     <string name="already_have_an_account_login">Already have an Account? Login!</string>
     <string name="logout">logout</string>
     <string name="story_app">Story App</string>
+    <string name="detail">Detail</string>
+    <string name="camera">Camera</string>
+    <string name="galeri">Gallery</string>
+    <string name="upload">Upload</string>
+    <string name="description">Description</string>
+    <string name="add_story">Add Story</string>
 </resources>

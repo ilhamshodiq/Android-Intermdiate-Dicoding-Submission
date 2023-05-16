@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.the12smb.submissionstoryapp.data.remote.response.ListStoryItem
 import com.the12smb.submissionstoryapp.databinding.ItemCardviewStoryBinding
+import com.the12smb.submissionstoryapp.view.detail.DetailActivity
 
 class StoriesAdapter(private val listStories: List<ListStoryItem>) :
     RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
@@ -31,11 +32,11 @@ class StoriesAdapter(private val listStories: List<ListStoryItem>) :
             .load(users.photoUrl)
             .into(holder.ivItemPhoto)
 
-//        holder.itemView.setOnClickListener{
-//            val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
-//            intentDetail.putExtra(DetailActivity.EXTRA_LOGIN, users.login)//intent data login
-//            holder.itemView.context.startActivity(intentDetail)
-//        }
+        holder.itemView.setOnClickListener{
+            val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
+            intentDetail.putExtra(DetailActivity.EXTRA_ID, users.id)// intent id
+            holder.itemView.context.startActivity(intentDetail)
+        }
     }
 
     override fun getItemCount(): Int {

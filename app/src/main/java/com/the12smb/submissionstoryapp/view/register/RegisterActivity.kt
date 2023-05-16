@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.edRegisterEmail.text.toString()
             val password = binding.edRegisterPassword.text.toString()
             val register = registerViewModel.register(name, email, password) //ngereturn boole
-            if (!register) {
+            if (register) {
                 Toast.makeText(this, "User not Registered", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "User Registered", Toast.LENGTH_SHORT).show()
