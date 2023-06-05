@@ -20,7 +20,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var binding: ActivityDetailBinding
 
-    private lateinit var id : String
+    private lateinit var id: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +55,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupViewModel() {
         val pref = UserPreference.getInstance(dataStore)
-        detailViewModel = ViewModelProvider(this, ViewModelFactory(pref))[DetailViewModel::class.java]
+        detailViewModel =
+            ViewModelProvider(this, ViewModelFactory(pref))[DetailViewModel::class.java]
     }
 
     private fun showLoading(state: Boolean) {

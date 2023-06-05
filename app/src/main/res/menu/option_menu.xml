@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/maps"
+        app:showAsAction="collapseActionView|ifRoom"/>
+    <item
         android:id="@+id/logout"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:title="@string/logout"

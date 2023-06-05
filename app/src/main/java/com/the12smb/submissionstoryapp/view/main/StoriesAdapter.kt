@@ -5,42 +5,56 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.the12smb.submissionstoryapp.data.remote.response.ListStoryItem
 import com.the12smb.submissionstoryapp.databinding.ItemCardviewStoryBinding
 import com.the12smb.submissionstoryapp.view.detail.DetailActivity
 
-class StoriesAdapter(private val listStories: List<ListStoryItem>) :
-    RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
-
-    class ViewHolder(binding: ItemCardviewStoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        val ivItemPhoto: ImageView = binding.ivItemPhoto
-        val tvItemName: TextView = binding.tvItemName
-        val tvItemDescription: TextView = binding.tvItemDescription
+class StoriesAdapter :
+    PagingDataAdapter<ListStoryItem, StoriesAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding =
+            ItemCardviewStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemCardviewStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
-    }
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val users = listStories[position]
-        holder.tvItemName.text = users.name
-        holder.tvItemDescription.text = users.description
-        Glide.with(holder.itemView.context)
-            .load(users.photoUrl)
-            .into(holder.ivItemPhoto)
-
-        holder.itemView.setOnClickListener{
-            val intentDetail = Intent(holder.itemView.context, DetailActivity::class.java)
-            intentDetail.putExtra(DetailActivity.EXTRA_ID, users.id)// intent id
-            holder.itemView.context.startActivity(intentDetail)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
         }
     }
 
-    override fun getItemCount(): Int {
-        return listStories.size
+    class MyViewHolder(private val binding: ItemCardviewStoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: ListStoryItem) {
+            binding.tvItemName.text = data.name
+            binding.tvItemDescription.text = data.description
+            Glide.with(itemView.context).load(data.photoUrl).into(binding.ivItemPhoto)
+            binding.root.setOnClickListener {
+                val intentDetail = Intent(itemView.context, DetailActivity::class.java)
+                intentDetail.putExtra(DetailActivity.EXTRA_ID, data.id)// intent id
+                itemView.context.startActivity(intentDetail)
+            }
+        }
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListStoryItem>() {
+            override fun areItemsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: ListStoryItem,
+                newItem: ListStoryItem
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
     }
 
 }

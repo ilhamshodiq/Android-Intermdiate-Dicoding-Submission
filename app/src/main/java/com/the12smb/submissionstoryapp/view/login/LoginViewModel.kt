@@ -22,7 +22,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
 
     private val _login = MutableLiveData<UserModel>()
     val login: LiveData<UserModel> = _login
-
+    fun getToken(): LiveData<String> = pref.getToken().asLiveData()//ambil token
     fun isLogin(): LiveData<Boolean> = pref.isLogin().asLiveData()
 
     fun login(email: String, password: String) {
@@ -52,6 +52,13 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                 Log.e(TAG, "onFailureThrowable: ${t.message}")
             }
         })
+    }
+
+//    logout
+    fun logout() {
+        viewModelScope.launch {
+            pref.logout()
+        }
     }
 
     companion object {

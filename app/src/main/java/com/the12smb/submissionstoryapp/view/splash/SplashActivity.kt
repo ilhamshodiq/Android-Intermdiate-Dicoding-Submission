@@ -14,6 +14,7 @@ import com.the12smb.submissionstoryapp.view.login.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -24,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, SPLASH_TIME_OUT)
     }
 
     private fun setupView() {
@@ -38,5 +39,9 @@ class SplashActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    companion object {
+        const val SPLASH_TIME_OUT = 3000L
     }
 }

@@ -19,4 +19,15 @@
     <string name="upload">Upload</string>
     <string name="description">Description</string>
     <string name="add_story">Add Story</string>
+    <string name="preview_image">Preview Image</string>
+    <string name="not_getting_permission">Not getting permission.</string>
+    <string name="story_uploaded">Story Uploaded!</string>
+    <string name="story_not_uploaded">Story not Uploaded!</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="maps">Maps</string>
+    <string name="retry">Retry</string>
 </resources>

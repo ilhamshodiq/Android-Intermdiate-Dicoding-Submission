@@ -99,11 +99,16 @@ class AddStoryActivity : AppCompatActivity() {
                 val uploadImageRequest = addStoryViewModel.addStory(token, desc, file)
                 uploadImageRequest.observe(this) {
                     if (it) {
-                        Toast.makeText(this, "Story Uploaded!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.story_uploaded), Toast.LENGTH_SHORT)
+                            .show()
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Story not Uploaded!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.story_not_uploaded),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -156,7 +161,7 @@ class AddStoryActivity : AppCompatActivity() {
             if (!allPermissionsGranted()) {
                 Toast.makeText(
                     this,
-                    "Not getting permission.",
+                    getString(R.string.not_getting_permission),
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
