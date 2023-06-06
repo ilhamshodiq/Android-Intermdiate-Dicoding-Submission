@@ -9,7 +9,6 @@ import com.the12smb.submissionstoryapp.data.local.model.UserPreference
 import com.the12smb.submissionstoryapp.data.remote.response.ListStoryItem
 import com.the12smb.submissionstoryapp.data.remote.response.StoriesResponse
 import com.the12smb.submissionstoryapp.data.remote.retrofit.ApiConfig
-import com.the12smb.submissionstoryapp.view.login.LoginViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

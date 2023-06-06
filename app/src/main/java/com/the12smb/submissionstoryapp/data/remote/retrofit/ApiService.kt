@@ -58,6 +58,8 @@ interface ApiService {
     fun addStory(
         @Header("Authorization") token: String,
         @Part("description") description: RequestBody,
-        @Part photo: MultipartBody.Part
+        @Part photo: MultipartBody.Part,
+        @Part("lat") lat: Float? = null,
+        @Part("lon") lon: Float? = null
     ): Call<AddStoryResponse>
 }

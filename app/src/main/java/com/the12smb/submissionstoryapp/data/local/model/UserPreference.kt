@@ -1,6 +1,5 @@
 package com.the12smb.submissionstoryapp.data.local.model
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -14,6 +13,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     fun getToken(): Flow<String> {
         return dataStore.data.map { preferences ->
             preferences[TOKEN_KEY] ?: ""
+        }
+    }
+
+    fun getName(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[NAME_KEY] ?: ""
         }
     }
 

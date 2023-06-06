@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvContent.addItemDecoration(itemDecoration)
 
-        supportActionBar?.title = getString(R.string.story_app)
+        mainViewModel.getName().observe(this) {
+            supportActionBar?.title = "Hii, $it"
+        }
+
     }
 
     private fun getData() {

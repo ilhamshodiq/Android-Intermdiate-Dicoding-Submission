@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.the12smb.submissionstoryapp.data.local.model.UserModel
 import com.the12smb.submissionstoryapp.data.local.model.UserPreference
@@ -25,7 +26,11 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
     fun getToken(): LiveData<String> = pref.getToken().asLiveData()//ambil token
     fun isLogin(): LiveData<Boolean> = pref.isLogin().asLiveData()
 
-    fun login(email: String, password: String) {
+    private var _loginResp = MutableLiveData<Response<LoginResponse>?>()
+    val loginResp: LiveData<Response<LoginResponse>?> get() = _loginResp
+
+    fun login(email: String, password: String){
+        _loginResp.value = null
         _isLoading.value = true
         val client = ApiConfig.getApiService().login(email, password)
         client.enqueue(object : Callback<LoginResponse> {
@@ -46,7 +51,9 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                     _isLoading.value = false
                     Log.e(TAG, "onFailureResponse: ${response.message()}")
                 }
+                _loginResp.postValue(response)
             }
+
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailureThrowable: ${t.message}")
@@ -54,14 +61,8 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
         })
     }
 
-//    logout
-    fun logout() {
-        viewModelScope.launch {
-            pref.logout()
-        }
-    }
 
     companion object {
-        private const val TAG = "LoginViewModel"
+        const val TAG = "LoginViewModel"
     }
 }

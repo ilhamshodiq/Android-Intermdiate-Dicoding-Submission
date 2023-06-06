@@ -6,7 +6,6 @@ import com.the12smb.submissionstoryapp.data.local.model.UserPreference
 import com.the12smb.submissionstoryapp.view.add.AddStoryViewModel
 import com.the12smb.submissionstoryapp.view.detail.DetailViewModel
 import com.the12smb.submissionstoryapp.view.login.LoginViewModel
-import com.the12smb.submissionstoryapp.view.main.MainViewModel
 import com.the12smb.submissionstoryapp.view.maps.MapsViewModel
 
 class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.NewInstanceFactory() {

@@ -30,4 +30,5 @@
     <string name="hybrid_type">Hybrid</string>
     <string name="maps">Maps</string>
     <string name="retry">Retry</string>
+    <string name="location">Show Location</string>
 </resources>

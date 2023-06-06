@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         checkLoginStatus()
         setupAction()
         playAnimation()
+
     }
 
     private fun setupView() {
@@ -74,11 +76,26 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
         binding.loginButton.setOnClickListener {
             val email = binding.edLoginEmail.text.toString()
             val password = binding.edLoginPassword.text.toString()
             loginViewModel.login(email, password)
+            loginViewModel.loginResp.observe(this) {
+                if (it != null) {
+                    //entah kenapa force closed
+                    //Toast.makeText(this, it.body()?.message, Toast.LENGTH_SHORT).show()
+                    if (it.message() == "Unauthorized") {
+                        Toast.makeText(this, "Email or password Incorrect", Toast.LENGTH_SHORT)
+                            .show()
+
+                    } else if (it.message() == "OK") {
+                        Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
+
     }
 
     private fun showLoading(state: Boolean) {
@@ -87,12 +104,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun playAnimation() {
 
-        val titleTextView = ObjectAnimator.ofFloat(binding.loginTextView, View.ALPHA, 1f).setDuration(300)
-        val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(300)
-        val emailEditText = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(300)
-        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(300)
-        val passwordEditTextView = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(300)
-        val registerTextView = ObjectAnimator.ofFloat(binding.registerTextView, View.ALPHA, 1f).setDuration(300)
+        val titleTextView =
+            ObjectAnimator.ofFloat(binding.loginTextView, View.ALPHA, 1f).setDuration(300)
+        val emailTextView =
+            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(300)
+        val emailEditText =
+            ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(300)
+        val passwordTextView =
+            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(300)
+        val passwordEditTextView =
+            ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(300)
+        val registerTextView =
+            ObjectAnimator.ofFloat(binding.registerTextView, View.ALPHA, 1f).setDuration(300)
         val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(300)
 
 

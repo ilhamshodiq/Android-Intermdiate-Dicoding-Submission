@@ -12,7 +12,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.the12smb.submissionstoryapp.data.database.StoryDatabase
-import com.the12smb.submissionstoryapp.data.local.model.UserModel
 import com.the12smb.submissionstoryapp.data.local.model.UserPreference
 import com.the12smb.submissionstoryapp.data.remote.response.ListStoryItem
 import com.the12smb.submissionstoryapp.data.remote.retrofit.ApiService
@@ -27,6 +26,7 @@ class StoryRepository(
     private val pref = UserPreference.getInstance(context.dataStore)
 
     fun getToken(): LiveData<String> = pref.getToken().asLiveData()//ambil token
+    fun getName(): LiveData<String> = pref.getName().asLiveData()//ambil nama
 
     suspend fun logout() {
         pref.logout()

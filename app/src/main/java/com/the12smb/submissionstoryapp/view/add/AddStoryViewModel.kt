@@ -24,7 +24,7 @@ class AddStoryViewModel (private val pref: UserPreference) : ViewModel() {
     fun getToken() : LiveData<String> = pref.getToken().asLiveData()//ambil token
 
 
-     fun addStory(token: String, desc: String, photo: File) :LiveData<Boolean> {
+     fun addStory(token: String, desc: String, photo: File, lat: Float? = null, lon: Float? = null) :LiveData<Boolean> {
         _isLoading.value = true
          val uploadImageRequest = MutableLiveData<Boolean>() // untuk check apakah upload berhasil
 
@@ -36,7 +36,7 @@ class AddStoryViewModel (private val pref: UserPreference) : ViewModel() {
             requestImageFile
         )
 
-        val client = ApiConfig.getApiService().addStory(token, description, imageMultipart)
+        val client = ApiConfig.getApiService().addStory(token, description, imageMultipart, lat, lon)
         client.enqueue(object : Callback<AddStoryResponse> {
             override fun onResponse(
                 call: Call<AddStoryResponse>,

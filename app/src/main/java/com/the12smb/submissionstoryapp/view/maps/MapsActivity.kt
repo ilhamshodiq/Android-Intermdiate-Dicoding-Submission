@@ -42,6 +42,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupView()
+
         mapsViewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
@@ -145,6 +147,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (exception: Resources.NotFoundException) {
             Log.e(TAG, "Can't find style. Error: ", exception)
         }
+    }
+
+    private fun setupView() {
+        supportActionBar?.title = getString(R.string.maps)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
 

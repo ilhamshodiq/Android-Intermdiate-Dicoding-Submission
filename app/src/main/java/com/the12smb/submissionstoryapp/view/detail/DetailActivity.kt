@@ -33,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupView() {
         supportActionBar?.title = getString(R.string.detail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         detailViewModel.isLoading.observe(this) {
             showLoading(it)
@@ -49,8 +50,11 @@ class DetailActivity : AppCompatActivity() {
                     .into(ivDetailPhoto)
             }
         }
+    }
 
-
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun setupViewModel() {

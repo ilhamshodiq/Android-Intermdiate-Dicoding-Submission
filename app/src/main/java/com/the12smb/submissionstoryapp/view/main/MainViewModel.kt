@@ -16,6 +16,7 @@ class MainViewModel(
     private val storyRepository: StoryRepository
 ) : ViewModel() {
     fun getToken(): LiveData<String> = storyRepository.getToken()//ambil token
+    fun getName(): LiveData<String> = storyRepository.getName()//ambil token
     fun getStory(token: String): LiveData<PagingData<ListStoryItem>> {
         return storyRepository.getStory(token).cachedIn(viewModelScope)
     }
